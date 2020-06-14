@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body class="root">
+    <div class="page">
+      <header class="header">
+        <img
+          class="header__logo"
+          src="./img/header/logo.svg"
+          alt="Mesto Russia"
+        />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <img
+            class="profile__avatar"
+            src="./img/profile/image.jpg"
+            alt="Аватар пользователя"
+          />
+          <div class="profile-info">
+            <h1 class="profile-info__name">Жак-Ив Кусто</h1>
+            <button class="profile__btn profile-info__btn_edit"></button>
+            <p class="profile-info__job">Исследователь океана</p>
+          </div>
+          <button class="profile__btn profile__btn_add"></button>
+        </section>
+        <section class="elements">
+          <ul class="elements__items">
+            <li class="element">
+              <img
+                class="element__image"
+                src="./img/elements/Karachayevsk.png"
+                alt="Фото"
+              />
+              <div class="element__text">
+                <p class="element__title">Карачаево-Черкесия</p>
+                <img
+                  class="element__like"
+                  src="./img/elements/Group.svg"
+                  alt="Сердечко"
+                />
+              </div>
+            </li>
+            <li class="element">
+              <img
+                class="element__image"
+                src="./img/elements/moscow.jpg"
+                alt="Фото"
+              />
+              <div class="element__text">
+                <p class="element__title">Москва</p>
+                <img
+                  class="element__like"
+                  src="./img/elements/Group.svg"
+                  alt="Сердечко"
+                />
+              </div>
+            </li>
+            <li class="element">
+              <img
+                class="element__image"
+                src="./img/elements/mount_elbrus.png"
+                alt="Фото"
+              />
+              <div class="element__text">
+                <p class="element__title">Гора Эльбрус</p>
+                <img
+                  class="element__like"
+                  src="./img/elements/Group.svg"
+                  alt="Сердечко"
+                />
+              </div>
+            </li>
+            <li class="element">
+              <img
+                class="element__image"
+                src="./img/elements/Petersburg.jpg"
+                alt="Фото"
+              />
+              <div class="element__text">
+                <p class="element__title">Санкт-петербург</p>
+                <img
+                  class="element__like"
+                  src="./img/elements/Group.svg"
+                  alt="Сердечко"
+                />
+              </div>
+            </li>
+            <li class="element">
+              <img
+                class="element__image"
+                src="./img/elements/sochi.jpg"
+                alt="Фото"
+              />
+              <div class="element__text">
+                <p class="element__title">Сочи</p>
+                <img
+                  class="element__like"
+                  src="./img/elements/Group.svg"
+                  alt="Сердечко"
+                />
+              </div>
+            </li>
+            <li class="element">
+              <img
+                class="element__image"
+                src="./img/elements/Dombai.png"
+                alt="Фото"
+              />
+              <div class="element__text">
+                <p class="element__title">Домбай</p>
+                <img
+                  class="element__like"
+                  src="./img/elements/Group.svg"
+                  alt="Сердечко"
+                />
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__text">&copy; 2020 Mesto Russia</p>
+      </footer>
+      <div class="popup">
+        <div class="popup__container">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <form class="popup__form">
+            <input
+              type="text"
+              placeholder="Имя"
+              class="popup__text popup__text_name"
+            />
+            <input
+              type="text"
+              placeholder="О себе"
+              class="popup__text popup__text_job"
+            />
+            <button type="submit" class="popup__btn popup__btn_add">
+              Сохранить
+            </button>
+          </form>
+          <button class="popup__btn popup__btn_close"></button>
+        </div>
+      </div>
+    </div>
+    <script src="./blocks/popup/popup.js"></script>
+  </body>
+</html>

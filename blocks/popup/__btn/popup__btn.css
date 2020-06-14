@@ -1,0 +1,6 @@
+.popup__btn {
+  cursor: pointer;
+}
+.popup__btn:focus {
+  outline: none;
+}

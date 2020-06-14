@@ -1,0 +1,25 @@
+.popup__btn_add {
+  width: 358px;
+  height: 50px;
+  color: #ffffff;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  background-color: #000000;
+  margin: 48px 36px 36px;
+  border: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
+.popup__btn_add:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+@media screen and (max-width: 555px) {
+  .popup__btn_add {
+    width: 80%;
+    font-size: 15px;
+  }
+}
