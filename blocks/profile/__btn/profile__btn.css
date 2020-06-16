@@ -1,0 +1,12 @@
+.profile__btn {
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+.profile__btn:hover {
+  opacity: 0.6;
+}
+.profile__btn:focus {
+  outline: none;
+}

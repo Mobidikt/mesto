@@ -1,0 +1,13 @@
+@import url(./__items/elements__items.css);
+.elements {
+  margin: 0 auto;
+}
+@media screen and (max-width: 620px) {
+  .elements {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-line-pack: center;
+    align-content: center;
+  }
+}
