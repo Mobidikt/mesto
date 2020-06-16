@@ -1,4 +1,4 @@
-.profile-info__job {
+.profile__info_job {
   max-width: 80%;
   font-style: normal;
   font-weight: normal;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (max-width: 780px) {
-  .profile-info__job {
+  .profile__info_job {
     text-align: center;
     width: 280px;
     margin: 0 auto 36px;

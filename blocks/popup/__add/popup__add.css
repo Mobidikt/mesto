@@ -1,4 +1,4 @@
-.popup__btn_add {
+.popup__add {
   width: 358px;
   height: 50px;
   color: #ffffff;
@@ -13,12 +13,17 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0;
+  cursor: pointer;
+  border-radius: 2px;
 }
-.popup__btn_add:hover {
+.popup__add:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
+.popup__add:focus {
+  outline: none;
+}
 @media screen and (max-width: 555px) {
-  .popup__btn_add {
+  .popup__add {
     width: 80%;
     font-size: 15px;
   }

@@ -1,4 +1,4 @@
-.profile-info__btn_edit {
+.profile__btn_edit {
   width: 24px;
   height: 24px;
   background-image: url(../../../../img/profile/eddit.svg);
@@ -8,7 +8,7 @@
   background-size: 10px;
 }
 @media screen and (max-width: 900px) {
-  .profile-info__btn_edit {
+  .profile__btn_edit {
     width: 18px;
     height: 18px;
     background-size: 7.5px;

@@ -5,14 +5,20 @@
 .element {
   background-color: #ffffff;
   border-radius: 10px;
+  overflow: hidden;
   width: 282px;
   height: 361px;
 }
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 900px) {
   .element {
     margin-bottom: 20px;
   }
-  .element:last-child {
+  .element:nth-last-child(-n + 2) {
     margin-bottom: 0;
+  }
+}
+@media screen and (max-width: 620px) {
+  .element:nth-last-child(2) {
+    margin-bottom: 20px;
   }
 }

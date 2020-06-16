@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Кирилл Мецкер" />
     <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
@@ -12,7 +13,7 @@
         <img
           class="header__logo"
           src="./img/header/logo.svg"
-          alt="Mesto Russia"
+          alt="Место Россия"
         />
       </header>
       <main class="content">
@@ -22,103 +23,82 @@
             src="./img/profile/image.jpg"
             alt="Аватар пользователя"
           />
-          <div class="profile-info">
-            <h1 class="profile-info__name">Жак-Ив Кусто</h1>
-            <button class="profile__btn profile-info__btn_edit"></button>
-            <p class="profile-info__job">Исследователь океана</p>
+          <div class="profile__info">
+            <h1 class="profile__info_name">Жак-Ив Кусто</h1>
+            <button
+              type="button"
+              class="profile__btn profile__btn_edit"
+            ></button>
+            <p class="profile__info_job">Исследователь океана</p>
           </div>
-          <button class="profile__btn profile__btn_add"></button>
+          <button type="button" class="profile__btn profile__btn_add"></button>
         </section>
         <section class="elements">
           <ul class="elements__items">
             <li class="element">
               <img
                 class="element__image"
-                src="./img/elements/Karachayevsk.png"
-                alt="Фото"
+                src="./img/elements/karachayevsk.png"
+                alt="Изображение достопримечательности данного места"
               />
               <div class="element__text">
                 <p class="element__title">Карачаево-Черкесия</p>
-                <img
-                  class="element__like"
-                  src="./img/elements/Group.svg"
-                  alt="Сердечко"
-                />
+                <button type="button" class="element__like"></button>
               </div>
             </li>
             <li class="element">
               <img
                 class="element__image"
                 src="./img/elements/moscow.jpg"
-                alt="Фото"
+                alt="Изображение достопримечательности данного места"
               />
               <div class="element__text">
                 <p class="element__title">Москва</p>
-                <img
-                  class="element__like"
-                  src="./img/elements/Group.svg"
-                  alt="Сердечко"
-                />
+                <button type="button" class="element__like"></button>
               </div>
             </li>
             <li class="element">
               <img
                 class="element__image"
                 src="./img/elements/mount_elbrus.png"
-                alt="Фото"
+                alt="Изображение достопримечательности данного места"
               />
               <div class="element__text">
                 <p class="element__title">Гора Эльбрус</p>
-                <img
-                  class="element__like"
-                  src="./img/elements/Group.svg"
-                  alt="Сердечко"
-                />
+                <button type="button" class="element__like"></button>
               </div>
             </li>
             <li class="element">
               <img
                 class="element__image"
-                src="./img/elements/Petersburg.jpg"
-                alt="Фото"
+                src="./img/elements/petersburg.jpg"
+                alt="Изображение достопримечательности данного места"
               />
               <div class="element__text">
                 <p class="element__title">Санкт-петербург</p>
-                <img
-                  class="element__like"
-                  src="./img/elements/Group.svg"
-                  alt="Сердечко"
-                />
+                <button type="button" class="element__like"></button>
               </div>
             </li>
             <li class="element">
               <img
                 class="element__image"
                 src="./img/elements/sochi.jpg"
-                alt="Фото"
+                alt="Изображение достопримечательности данного места"
               />
               <div class="element__text">
                 <p class="element__title">Сочи</p>
-                <img
-                  class="element__like"
-                  src="./img/elements/Group.svg"
-                  alt="Сердечко"
-                />
+                <button type="button" class="element__like"></button>
               </div>
             </li>
             <li class="element">
               <img
                 class="element__image"
-                src="./img/elements/Dombai.png"
-                alt="Фото"
+                src="./img/elements/dombai.png"
+                alt="Изображение достопримечательности данного места"
               />
               <div class="element__text">
                 <p class="element__title">Домбай</p>
-                <img
-                  class="element__like"
-                  src="./img/elements/Group.svg"
-                  alt="Сердечко"
-                />
+                <button type="button" class="element__like"></button>
               </div>
             </li>
           </ul>
@@ -132,23 +112,25 @@
           <h3 class="popup__title">Редактировать профиль</h3>
           <form class="popup__form">
             <input
+              name="name"
               type="text"
               placeholder="Имя"
               class="popup__text popup__text_name"
             />
             <input
+              name="job"
               type="text"
               placeholder="О себе"
               class="popup__text popup__text_job"
             />
-            <button type="submit" class="popup__btn popup__btn_add">
+            <button type="submit" class="popup__add">
               Сохранить
             </button>
           </form>
-          <button class="popup__btn popup__btn_close"></button>
+          <button type="button" class="popup__close"></button>
         </div>
       </div>
     </div>
-    <script src="./blocks/popup/popup.js"></script>
+    <script src="./scripts/popup.js"></script>
   </body>
 </html>
