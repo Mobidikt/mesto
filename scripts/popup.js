@@ -6,8 +6,8 @@ const closeButton = popupContainer.querySelector(".popup__close"); //кнопк�
 const formElement = popup.querySelector(".popup__form");
 const nameInput = popupContainer.querySelector(".popup__text_name");
 const jobInput = popupContainer.querySelector(".popup__text_job");
-const name = container.querySelector(".profile__info_name"); //имя профиля
-const job = container.querySelector(".profile__info_job"); // информация о профиле
+const name = container.querySelector(".profile__name"); //имя профиля
+const job = container.querySelector(".profile__job"); // информация о профиле
 
 function openPopup() {
   nameInput.value = name.textContent;
