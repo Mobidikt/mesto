@@ -18,8 +18,10 @@ const srcMesto = popupMesto.querySelector(".popup__text_src"); // Адрес к�
 const formMesto = popupMesto.querySelector(".popup__form_mesto"); // форма попап место
 const closeButtonMesto = popupMesto.querySelector(".popup__close"); //кнопка закрытие попап места
 const elementTemplate = document.querySelector(".element-template");
-const elementList = document.querySelector(".elements__items");
-
+const elementList = document.querySelector(".place__list");
+const noCardsPlaceholder = container.querySelector(".card__placeholder");
+const popupCaption = popupPhoto.querySelector(".popup__caption");
+const popupPicture = popupPhoto.querySelector(".popup__picture");
 const initialCards = [
   {
     name: "Москва",
@@ -52,29 +54,65 @@ const initialCards = [
       "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
-
-initialCards.forEach((card) => {
-  addCard(card);
-});
-function addCard(card) {
+function createCard(card) {
   const element = elementTemplate.content.cloneNode(true);
-  element.querySelector(".element__title").textContent = card.name;
-  element.querySelector(".element__image").src = card.link;
+  element.querySelector(".card__title").textContent = card.name;
+  element.querySelector(".card__image").src = card.link;
+  element.querySelector(".card__image").alt = card.name;
+  return element;
+}
 
-  addCardListeners(element);
+function togglePopup(popup) {
+  popup.classList.toggle("popup_opened");
+}
+closeButton.addEventListener("click", () => togglePopup(popup));
+addButton.addEventListener("click", () => togglePopup(popupMesto));
 
-  elementList.append(element);
+function checkMesto() {
+  if (elementList.firstElementChild) {
+    noCardsPlaceholder.classList.add("card__placeholder_hidden");
+  } else {
+    noCardsPlaceholder.classList.remove("card__placeholder_hidden");
+  }
+}
+
+function deleteElement(e) {
+  const element = e.target.closest(".card");
+  element.remove(); //реализация удаления
   checkMesto();
 }
 
-// Модальное окно места
-function openPopupMesto() {
-  popupMesto.classList.add("popup_opened");
+function setOpenPhoto(img) {
+  popupCaption.textContent = img.alt;
+  popupPicture.src = img.src;
 }
-addButton.addEventListener("click", openPopupMesto);
 
+// Модальное окно картинки
+function openPhoto(e) {
+  setOpenPhoto(e.target);
+  togglePopup(popupPhoto);
+}
+
+function likeMesto(e) {
+  e.target.classList.toggle("card__like_active"); //реализация лайков
+}
+
+function addCardListeners(element) {
+  element
+    .querySelector(".card__delete")
+    .addEventListener("click", deleteElement);
+  element.querySelector(".card__like").addEventListener("click", likeMesto);
+  element.querySelector(".card__image").addEventListener("click", openPhoto); //реализация попап картинки
+}
+function addCard(card) {
+  const cardElement = createCard(card);
+  addCardListeners(cardElement);
+  elementList.append(cardElement);
+}
+
+// Модальное окно места
 function closePopupMesto() {
-  popupMesto.classList.remove("popup_opened");
+  togglePopup(popupMesto);
   nameMesto.value = "";
   srcMesto.value = "";
 }
@@ -82,83 +120,39 @@ closeButtonMesto.addEventListener("click", closePopupMesto);
 
 function formSubmitMesto(evt) {
   evt.preventDefault();
-  const element = elementTemplate.content.cloneNode(true);
-  element.querySelector(".element__title").textContent = nameMesto.value;
-  element.querySelector(".element__image").src = srcMesto.value;
-  addCardListeners(element);
-
-  elementList.prepend(element);
-  popupMesto.classList.remove("popup_opened");
-  nameMesto.value = "";
-  srcMesto.value = "";
-  checkMesto();
+  const newCard = {
+    name: nameMesto.value,
+    link: srcMesto.value,
+  };
+  const cardElement = createCard(newCard);
+  addCardListeners(cardElement);
+  elementList.prepend(cardElement); // разные методы добавления
+  closePopupMesto();
+  checkMesto(); // при удалении всех карточек и добавление первой новой, необходимо спрятать элемент (писать код от части функции? который спрячет элемент)
 }
 formMesto.addEventListener("submit", formSubmitMesto);
 // слушатели элементов
-function addCardListeners(element) {
-  element
-    .querySelector(".element__delete")
-    .addEventListener("click", deleteElement);
-  element.querySelector(".element__like").addEventListener("click", likeMesto);
-  element.querySelector(".element__image").addEventListener("click", openPhoto); //реализация попап картинки
-}
 
-function likeMesto(e) {
-  e.target.classList.toggle("element__like_active"); //реализация лайков
-}
+closeButtonPhoto.addEventListener("click", () => togglePopup(popupPhoto));
 
-function deleteElement(e) {
-  const element = e.target.closest(".element");
-  element.remove(); //реализация удаления
-  checkMesto();
-}
-
-function checkMesto() {
-  const elementPlaceholder = elementList.querySelector(".element__placeholder");
-  if (elementList.querySelector(".element")) {
-    elementPlaceholder.classList.add("element__placeholder_hidden");
-  } else {
-    elementPlaceholder.classList.remove("element__placeholder_hidden");
-  }
-}
-
-// Модальное окно картинки
-function openPhoto(e) {
-  const element = e.target.closest(".element");
-
-  setOpenPhoto(element);
-  popupPhoto.classList.add("popup_opened");
-}
-function setOpenPhoto(element) {
-  const caption = element.querySelector(".element__title").textContent;
-  const img = element.querySelector(".element__image").src;
-
-  popupPhoto.querySelector(".popup__caption").textContent = caption;
-  popupPhoto.querySelector(".popup__picture").src = img;
-}
-
-function closePopupPhoto() {
-  popupPhoto.classList.remove("popup_opened");
-}
-closeButtonPhoto.addEventListener("click", closePopupPhoto);
-
-//Старый код
 function openPopup() {
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
-  popup.classList.add("popup_opened");
+  togglePopup(popup);
 }
 editButton.addEventListener("click", openPopup);
-
-function closePopup() {
-  popup.classList.remove("popup_opened");
-}
-closeButton.addEventListener("click", closePopup);
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
-  popup.classList.remove("popup_opened");
+  togglePopup(popup);
 }
 formElement.addEventListener("submit", formSubmitHandler);
+
+function init() {
+  initialCards.forEach(addCard);
+  // Проверяем наличие карточек на странице (пустой ли массив)
+  checkMesto();
+}
+init();

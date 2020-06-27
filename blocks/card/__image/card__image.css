@@ -1,4 +1,4 @@
-.element__image {
+.card__image {
   width: 282px;
   height: 282px;
   margin-bottom: 28px;
@@ -9,7 +9,7 @@
   -o-object-fit: cover;
   object-fit: cover;
 }
-.element__image:hover {
+.card__image:hover {
   opacity: 0.8;
   border: 2px solid rgb(108, 206, 29);
   border-radius: 10px 10px 0 0;

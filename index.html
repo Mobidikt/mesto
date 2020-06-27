@@ -33,12 +33,11 @@
           </div>
           <button type="button" class="profile__btn profile__btn_add"></button>
         </section>
-        <section class="elements">
-          <ul class="elements__items">
-            <li class="element__placeholder">
-              Вы не добавили ещё ни одного места
-            </li>
-          </ul>
+        <section class="place">
+          <ul class="place__list"></ul>
+          <div class="card__placeholder">
+            Вы не добавили ещё ни одного места
+          </div>
         </section>
       </main>
       <footer class="footer">
@@ -105,16 +104,12 @@
     </div>
 
     <template class="element-template">
-      <li class="element">
-        <img
-          class="element__image"
-          src=""
-          alt="Изображение достопримечательности данного места"
-        />
-        <button type="button" class="element__delete"></button>
-        <div class="element__text">
-          <p class="element__title"></p>
-          <button type="button" class="element__like"></button>
+      <li class="card">
+        <img class="card__image" src="#" alt="" />
+        <button type="button" class="card__delete"></button>
+        <div class="card__text">
+          <p class="card__title"></p>
+          <button type="button" class="card__like"></button>
         </div>
       </li>
     </template>

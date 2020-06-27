@@ -1,4 +1,4 @@
-.elements__items {
+.place__list {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -12,14 +12,14 @@
   justify-content: space-between;
 }
 @media screen and (max-width: 900px) {
-  .elements__items {
+  .place__list {
     -ms-flex-pack: distribute;
     justify-content: space-around;
     padding: 0 19px;
   }
 }
 @media screen and (max-width: 620px) {
-  .elements__items {
+  .place__list {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
@@ -27,7 +27,7 @@
   }
 }
 @media screen and (max-width: 620px) {
-  .elements__items {
+  .place__list {
     padding: 0;
     margin: 0 auto;
   }

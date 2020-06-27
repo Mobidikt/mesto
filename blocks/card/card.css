@@ -1,0 +1,36 @@
+@import url(./__image/card__image.css);
+@import url(./__text/card__text.css);
+@import url(./__title/card__title.css);
+@import url(./__like/card__like.css);
+@import url(./__delete/card__delete.css);
+@import url(./__like/_active/card__like_active.css);
+@import url(./__placeholder/card__placeholder.css);
+@import url(./__placeholder/_hidden/card__placeholder_hidden.css);
+.card {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 282px;
+  height: 361px;
+  margin-bottom: 21px;
+}
+.card:nth-last-child(-n + 3) {
+  margin-bottom: 0;
+}
+@media screen and (max-width: 900px) {
+  .card {
+    margin-bottom: 20px;
+  }
+  .card:nth-last-child(3) {
+    margin-bottom: 20px;
+  }
+  .card:nth-last-child(-n + 2) {
+    margin-bottom: 0;
+  }
+}
+@media screen and (max-width: 620px) {
+  .card:nth-last-child(2) {
+    margin-bottom: 20px;
+  }
+}

@@ -1,9 +1,9 @@
-@import url(./__items/elements__items.css);
-.elements {
+@import url(./__list/place__list.css);
+.place {
   margin: 0 auto;
 }
 @media screen and (max-width: 620px) {
-  .elements {
+  .place {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

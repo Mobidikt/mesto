@@ -1,4 +1,4 @@
-.element__title {
+.card__title {
   max-width: 195px;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
