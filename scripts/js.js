@@ -91,6 +91,7 @@ function formSubmitMesto(evt) {
   popupMesto.classList.remove("popup_opened");
   nameMesto.value = "";
   srcMesto.value = "";
+  checkMesto();
 }
 formMesto.addEventListener("submit", formSubmitMesto);
 // слушатели элементов
