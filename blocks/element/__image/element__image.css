@@ -1,6 +1,16 @@
 .element__image {
   width: 282px;
   height: 282px;
-  object-fit: cover;
   margin-bottom: 28px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 0;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
+.element__image:hover {
+  opacity: 0.8;
+  border: 2px solid rgb(108, 206, 29);
+  border-radius: 10px 10px 0 0;
+} /* Эфект при наведение у интерктивного элемента*/

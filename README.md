@@ -8,7 +8,7 @@
 
 - сетка flex, grid;
 
-- js
+- js (с вызовом нескольких модальных окон)
 
 https://mobidikt.github.io/mesto
 

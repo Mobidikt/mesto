@@ -1,8 +1,8 @@
 .popup__text {
   width: 358px;
   height: 27px;
-  margin: 0 36px;
-  padding: 0 0 13px;
+  margin: 0 36px 30px;
+  padding: 0 0 12px;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -14,7 +14,10 @@
 }
 @media screen and (max-width: 555px) {
   .popup__text {
+    height: 24px;
+    padding-bottom: 11px;
+    margin: 0 20px 20px;
     font-size: 12px;
-    max-width: 80%;
+    width: 200px;
   }
 }
