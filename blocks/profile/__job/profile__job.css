@@ -4,7 +4,7 @@
   font-weight: normal;
   font-size: 18px;
   min-height: 18px;
-  margin: 16px 0 0 0;
+  margin: 8px 0 0 0;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -17,7 +17,7 @@
   .profile__job {
     text-align: center;
     width: 280px;
-    margin: 0 auto 36px;
+    margin: 10px auto 36px;
     font-size: 14px;
     height: 20px;
   }

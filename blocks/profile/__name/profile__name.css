@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
-  min-height: 43px;
+  min-height: 54px;
   margin: 0 17px 0 0;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
@@ -15,7 +15,7 @@
   .profile__name {
     width: 201px;
     font-size: 27px;
-    min-height: 38px;
+    min-height: 32px;
     margin-right: 1px;
   }
 }

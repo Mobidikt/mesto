@@ -107,14 +107,13 @@ function addCardListeners(element) {
 function addCard(card) {
   const cardElement = createCard(card);
   addCardListeners(cardElement);
-  elementList.append(cardElement);
+  elementList.prepend(cardElement);
 }
 
 // Модальное окно места
 function closePopupMesto() {
   togglePopup(popupMesto);
-  nameMesto.value = "";
-  srcMesto.value = "";
+  formMesto.reset();
 }
 closeButtonMesto.addEventListener("click", closePopupMesto);
 
@@ -124,9 +123,7 @@ function formSubmitMesto(evt) {
     name: nameMesto.value,
     link: srcMesto.value,
   };
-  const cardElement = createCard(newCard);
-  addCardListeners(cardElement);
-  elementList.prepend(cardElement); // разные методы добавления
+  addCard(newCard);
   closePopupMesto();
   checkMesto(); // при удалении всех карточек и добавление первой новой, необходимо спрятать элемент (писать код от части функции? который спрячет элемент)
 }
@@ -151,7 +148,7 @@ function formSubmitHandler(evt) {
 formElement.addEventListener("submit", formSubmitHandler);
 
 function init() {
-  initialCards.forEach(addCard);
+  initialCards.reverse().forEach(addCard);
   // Проверяем наличие карточек на странице (пустой ли массив)
   checkMesto();
 }

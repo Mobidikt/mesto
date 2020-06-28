@@ -6,9 +6,9 @@
   color: #ffffff;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-align: baseline;
-  -ms-flex-align: baseline;
-  align-items: baseline;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   min-width: 0;
   flex-grow: 1;
 }

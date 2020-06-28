@@ -6,8 +6,9 @@
   background-position: center;
   border: 1px solid #ffffff;
   background-size: 10px;
+  padding: 0;
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 780px) {
   .profile__btn_edit {
     width: 18px;
     height: 18px;

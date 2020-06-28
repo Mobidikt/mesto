@@ -6,7 +6,7 @@
   box-sizing: border-box;
   background-image: url(../../../img/elements/group.svg);
   background-color: transparent;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
