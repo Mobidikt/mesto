@@ -1,4 +1,4 @@
-.popup__add {
+.popup__button {
   width: 358px;
   height: 50px;
   color: #ffffff;
@@ -8,7 +8,7 @@
   line-height: 22px;
   text-align: center;
   background-color: #000000;
-  margin: 18px 36px 0;
+  margin: 18px 0 0;
   border: none;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -16,15 +16,15 @@
   cursor: pointer;
   border-radius: 2px;
 }
-.popup__add:hover {
+.popup__button:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
-.popup__add:focus {
+.popup__button:focus {
   outline: none;
 }
 @media screen and (max-width: 555px) {
-  .popup__add {
-    margin: 16px 20px 0;
+  .popup__button {
+    margin-top: 11px;
     width: 200px;
     height: 40px;
     font-size: 14px;

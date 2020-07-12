@@ -4,17 +4,18 @@ const popupContainer = popup.querySelector(".popup__container"); //контей�
 const editButton = container.querySelector(".profile__btn_edit"); //кнопка редактирования информации
 const closeButton = popupContainer.querySelector(".popup__close"); //кнопка закрытие попап
 const formElement = popup.querySelector(".popup__form");
-const nameInput = popupContainer.querySelector(".popup__text_name");
-const jobInput = popupContainer.querySelector(".popup__text_job");
+const nameInput = popupContainer.querySelector(".popup__input_name");
+const jobInput = popupContainer.querySelector(".popup__input_job");
 const addButton = container.querySelector(".profile__btn_add"); // кнопка добавления места
 const name = container.querySelector(".profile__name"); //имя профиля
 const job = container.querySelector(".profile__job"); // информация о профиле
-
+const errorList = Array.from(document.querySelectorAll(".popup__error"));
+const inputList = Array.from(document.querySelectorAll(".popup__input"));
 const popupPhoto = document.querySelector(".popup_type_photo");
 const closeButtonPhoto = popupPhoto.querySelector(".popup__close");
 const popupMesto = document.querySelector(".popup_type_add-card"); //попап добавления места
-const nameMesto = popupMesto.querySelector(".popup__text_mesto"); //Имя нового метса
-const srcMesto = popupMesto.querySelector(".popup__text_src"); // Адрес картинки нового места
+const nameMesto = popupMesto.querySelector(".popup__input_mesto"); //Имя нового метса
+const srcMesto = popupMesto.querySelector(".popup__input_src"); // Адрес картинки нового места
 const formMesto = popupMesto.querySelector(".popup__form_mesto"); // форма попап место
 const closeButtonMesto = popupMesto.querySelector(".popup__close"); //кнопка закрытие попап места
 const elementTemplate = document.querySelector(".element-template");
@@ -22,6 +23,7 @@ const elementList = document.querySelector(".place__list");
 const noCardsPlaceholder = container.querySelector(".card__placeholder");
 const popupCaption = popupPhoto.querySelector(".popup__caption");
 const popupPicture = popupPhoto.querySelector(".popup__picture");
+
 const initialCards = [
   {
     name: "Москва",
@@ -62,8 +64,38 @@ function createCard(card) {
   return element;
 }
 
+function closeEsc(e) {
+  if (e.key === "Escape") {
+    togglePopup(document.querySelector(".popup_opened"));
+  }
+}
+
+function mouseClick(e) {
+  if (e.target.classList.contains("popup")) {
+    togglePopup(document.querySelector(".popup_opened"));
+  }
+}
+
 function togglePopup(popup) {
   popup.classList.toggle("popup_opened");
+  if (document.querySelector(".popup_opened")) {
+    setInitialState(popup);
+    document.addEventListener("keydown", closeEsc);
+    document.addEventListener("click", mouseClick);
+    inputList.forEach((input) => {
+      input.classList.remove("popup__input_type_error");
+    });
+    errorList.forEach((error) => {
+      error.classList.remove("popup__error_visible");
+      error.textContent = "";
+    });
+  } else {
+    document.removeEventListener("keydown", closeEsc);
+    document.removeEventListener("click", mouseClick);
+    if (popupMesto) {
+      formMesto.reset();
+    }
+  }
 }
 closeButton.addEventListener("click", () => togglePopup(popup));
 addButton.addEventListener("click", () => togglePopup(popupMesto));
@@ -111,21 +143,17 @@ function addCard(card) {
 }
 
 // Модальное окно места
-function closePopupMesto() {
-  togglePopup(popupMesto);
-  formMesto.reset();
-}
-closeButtonMesto.addEventListener("click", closePopupMesto);
+closeButtonMesto.addEventListener("click", () => togglePopup(popupMesto));
 
-function formSubmitMesto(evt) {
-  evt.preventDefault();
+function formSubmitMesto(e) {
+  e.preventDefault();
   const newCard = {
     name: nameMesto.value,
     link: srcMesto.value,
   };
   addCard(newCard);
-  closePopupMesto();
-  checkMesto(); // при удалении всех карточек и добавление первой новой, необходимо спрятать элемент (писать код от части функции? который спрячет элемент)
+  togglePopup(popupMesto);
+  checkMesto(); // при удалении всех карточек и добавление первой новой, необходимо спрятать элемент
 }
 formMesto.addEventListener("submit", formSubmitMesto);
 // слушатели элементов
@@ -139,8 +167,8 @@ function openPopup() {
 }
 editButton.addEventListener("click", openPopup);
 
-function formSubmitHandler(evt) {
-  evt.preventDefault();
+function formSubmitHandler(e) {
+  e.preventDefault();
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
   togglePopup(popup);

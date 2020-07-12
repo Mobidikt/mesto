@@ -1,0 +1,9 @@
+.form__field {
+  display: block;
+  padding: 0 0 9px;
+}
+@media screen and (max-width: 555px) {
+  .form__field {
+    padding-bottom: 3px;
+  }
+}
