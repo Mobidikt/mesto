@@ -20,7 +20,7 @@ const formMesto = popupMesto.querySelector(".popup__form_mesto"); // форма 
 const closeButtonMesto = popupMesto.querySelector(".popup__close"); //кнопка закрытие попап места
 const elementTemplate = document.querySelector(".element-template");
 const elementList = document.querySelector(".place__list");
-const noCardsPlaceholder = container.querySelector(".card__placeholder");
+const noCardsPlaceholder = container.querySelector(".place__placeholder");
 const popupCaption = popupPhoto.querySelector(".popup__caption");
 const popupPicture = popupPhoto.querySelector(".popup__picture");
 
@@ -58,53 +58,52 @@ const initialCards = [
 ];
 function createCard(card) {
   const element = elementTemplate.content.cloneNode(true);
+  const elementImg = element.querySelector(".card__image");
   element.querySelector(".card__title").textContent = card.name;
-  element.querySelector(".card__image").src = card.link;
-  element.querySelector(".card__image").alt = card.name;
+  elementImg.src = card.link;
+  elementImg.alt = card.name;
   return element;
 }
 
 function closeEsc(e) {
   if (e.key === "Escape") {
-    togglePopup(document.querySelector(".popup_opened"));
+    const activePopup = document.querySelector(".popup_opened");
+    closePopup(activePopup);
   }
 }
 
 function mouseClick(e) {
   if (e.target.classList.contains("popup")) {
-    togglePopup(document.querySelector(".popup_opened"));
+    const activePopup = document.querySelector(".popup_opened");
+    closePopup(activePopup);
   }
 }
 
-function togglePopup(popup) {
-  popup.classList.toggle("popup_opened");
-  if (document.querySelector(".popup_opened")) {
-    setInitialState(popup);
-    document.addEventListener("keydown", closeEsc);
-    document.addEventListener("click", mouseClick);
-    inputList.forEach((input) => {
-      input.classList.remove("popup__input_type_error");
-    });
-    errorList.forEach((error) => {
-      error.classList.remove("popup__error_visible");
-      error.textContent = "";
-    });
-  } else {
-    document.removeEventListener("keydown", closeEsc);
-    document.removeEventListener("click", mouseClick);
-    if (popupMesto) {
-      formMesto.reset();
-    }
-  }
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closeEsc);
+  document.addEventListener("click", mouseClick);
 }
-closeButton.addEventListener("click", () => togglePopup(popup));
-addButton.addEventListener("click", () => togglePopup(popupMesto));
+
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closeEsc);
+}
+
+closeButton.addEventListener("click", () => closePopup(popup));
+
+function openPopupMesto() {
+  formMesto.reset();
+  openPopup(popupMesto);
+  setInitialState(popupMesto);
+}
+addButton.addEventListener("click", () => openPopupMesto(popupMesto));
 
 function checkMesto() {
   if (elementList.firstElementChild) {
-    noCardsPlaceholder.classList.add("card__placeholder_hidden");
+    noCardsPlaceholder.classList.add("place__placeholder_hidden");
   } else {
-    noCardsPlaceholder.classList.remove("card__placeholder_hidden");
+    noCardsPlaceholder.classList.remove("place__placeholder_hidden");
   }
 }
 
@@ -122,7 +121,7 @@ function setOpenPhoto(img) {
 // Модальное окно картинки
 function openPhoto(e) {
   setOpenPhoto(e.target);
-  togglePopup(popupPhoto);
+  openPopup(popupPhoto);
 }
 
 function likeMesto(e) {
@@ -142,8 +141,7 @@ function addCard(card) {
   elementList.prepend(cardElement);
 }
 
-// Модальное окно места
-closeButtonMesto.addEventListener("click", () => togglePopup(popupMesto));
+closeButtonMesto.addEventListener("click", () => closePopup(popupMesto));
 
 function formSubmitMesto(e) {
   e.preventDefault();
@@ -152,26 +150,26 @@ function formSubmitMesto(e) {
     link: srcMesto.value,
   };
   addCard(newCard);
-  togglePopup(popupMesto);
+  closePopup(popupMesto);
   checkMesto(); // при удалении всех карточек и добавление первой новой, необходимо спрятать элемент
 }
 formMesto.addEventListener("submit", formSubmitMesto);
-// слушатели элементов
 
-closeButtonPhoto.addEventListener("click", () => togglePopup(popupPhoto));
+closeButtonPhoto.addEventListener("click", () => closePopup(popupPhoto));
 
-function openPopup() {
+function openPopupProfile() {
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
-  togglePopup(popup);
+  openPopup(popup);
+  setInitialState(popup);
 }
-editButton.addEventListener("click", openPopup);
+editButton.addEventListener("click", openPopupProfile);
 
 function formSubmitHandler(e) {
   e.preventDefault();
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
-  togglePopup(popup);
+  closePopup(popup);
 }
 formElement.addEventListener("submit", formSubmitHandler);
 

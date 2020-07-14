@@ -2,7 +2,6 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add("popup__input_type_error");
   errorElement.textContent = errorMessage;
-  console.log(errorElement);
   errorElement.classList.add("popup__error_visible");
 };
 
@@ -26,10 +25,6 @@ const hasInvalidInput = (inputList) => {
     return !inputElement.validity.valid;
   });
 };
-
-function isUrl(input) {
-  return input.value === urlRegexp;
-}
 
 function actualizeButtonState(inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {

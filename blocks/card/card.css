@@ -4,8 +4,6 @@
 @import url(./__like/card__like.css);
 @import url(./__delete/card__delete.css);
 @import url(./__like/_active/card__like_active.css);
-@import url(./__placeholder/card__placeholder.css);
-@import url(./__placeholder/_hidden/card__placeholder_hidden.css);
 .card {
   position: relative;
   background-color: #ffffff;

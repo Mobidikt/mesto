@@ -1,9 +1,9 @@
-.form__field {
+.popup__field {
   display: block;
   padding: 0 0 9px;
 }
 @media screen and (max-width: 555px) {
-  .form__field {
+  .popup__field {
     padding-bottom: 3px;
   }
 }
