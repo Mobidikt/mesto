@@ -9,8 +9,6 @@ const jobInput = popupContainer.querySelector(".popup__input_job");
 const addButton = container.querySelector(".profile__btn_add"); // кнопка добавления места
 const name = container.querySelector(".profile__name"); //имя профиля
 const job = container.querySelector(".profile__job"); // информация о профиле
-const errorList = Array.from(document.querySelectorAll(".popup__error"));
-const inputList = Array.from(document.querySelectorAll(".popup__input"));
 const popupPhoto = document.querySelector(".popup_type_photo");
 const closeButtonPhoto = popupPhoto.querySelector(".popup__close");
 const popupMesto = document.querySelector(".popup_type_add-card"); //попап добавления места
@@ -56,6 +54,7 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeEsc);
+  document.removeEventListener("click", mouseClick);
 }
 
 closeButton.addEventListener("click", () => closePopup(popup));
