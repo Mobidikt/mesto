@@ -1,12 +1,12 @@
-import { checkMesto, setOpenPhoto } from "./utils.js";
-
 export class Card {
-  constructor(card, elementTemplate, cardSelector) {
+  constructor(card, elementTemplate, cardSelector, setOpenPhoto, checkMesto) {
     this._link = card.link;
     this._name = card.name;
     this._template = elementTemplate;
     this._cardSelector = cardSelector;
     this._isLiked = false;
+    this._open = setOpenPhoto;
+    this._check = checkMesto;
   }
 
   _getTemplate() {
@@ -18,7 +18,7 @@ export class Card {
   }
 
   _openPhoto() {
-    setOpenPhoto({ link: this._link, name: this._name });
+    this._open({ link: this._link, name: this._name });
   }
 
   _handleLike() {
@@ -27,7 +27,7 @@ export class Card {
   }
   _deleteCard() {
     this._card.remove(); //реализация удаления
-    checkMesto();
+    this._check();
   }
   _setEventListeners() {
     this._deleteButton.addEventListener("click", () => this._deleteCard());

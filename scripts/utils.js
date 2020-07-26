@@ -61,7 +61,13 @@ export function setOpenPhoto(img) {
 }
 
 export function addCard(item, elementTemplate, cardSelector) {
-  const card = new Card(item, elementTemplate, cardSelector);
+  const card = new Card(
+    item,
+    elementTemplate,
+    cardSelector,
+    setOpenPhoto,
+    checkMesto
+  );
   const cardElement = card.createCard();
   elementList.prepend(cardElement);
 }
