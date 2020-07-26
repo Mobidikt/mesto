@@ -1,134 +1,47 @@
-const container = document.querySelector(".content"); //общий контейнер
-const popup = document.querySelector(".popup_type_profile"); // попап
-const popupContainer = popup.querySelector(".popup__container"); //контейнер попап
-const editButton = container.querySelector(".profile__btn_edit"); //кнопка редактирования информации
-const closeButton = popupContainer.querySelector(".popup__close"); //кнопка закрытие попап
-const formElement = popup.querySelector(".popup__form");
-const nameInput = popupContainer.querySelector(".popup__input_name");
-const jobInput = popupContainer.querySelector(".popup__input_job");
-const addButton = container.querySelector(".profile__btn_add"); // кнопка добавления места
-const name = container.querySelector(".profile__name"); //имя профиля
-const job = container.querySelector(".profile__job"); // информация о профиле
-const popupPhoto = document.querySelector(".popup_type_photo");
-const closeButtonPhoto = popupPhoto.querySelector(".popup__close");
-const popupMesto = document.querySelector(".popup_type_add-card"); //попап добавления места
-const nameMesto = popupMesto.querySelector(".popup__input_mesto"); //Имя нового метса
-const srcMesto = popupMesto.querySelector(".popup__input_src"); // Адрес картинки нового места
-const formMesto = popupMesto.querySelector(".popup__form_mesto"); // форма попап место
-const closeButtonMesto = popupMesto.querySelector(".popup__close"); //кнопка закрытие попап места
-const elementTemplate = document.querySelector(".element-template");
-const elementList = document.querySelector(".place__list");
-const noCardsPlaceholder = container.querySelector(".place__placeholder");
-const popupCaption = popupPhoto.querySelector(".popup__caption");
-const popupPicture = popupPhoto.querySelector(".popup__picture");
-
-function createCard(card) {
-  const element = elementTemplate.content.cloneNode(true);
-  const elementImg = element.querySelector(".card__image");
-  element.querySelector(".card__title").textContent = card.name;
-  elementImg.src = card.link;
-  elementImg.alt = card.name;
-  return element;
-}
-
-function closeEsc(e) {
-  if (e.key === "Escape") {
-    const activePopup = document.querySelector(".popup_opened");
-    closePopup(activePopup);
-  }
-}
-
-function mouseClick(e) {
-  if (e.target.classList.contains("popup")) {
-    const activePopup = document.querySelector(".popup_opened");
-    closePopup(activePopup);
-  }
-}
-
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keydown", closeEsc);
-  document.addEventListener("click", mouseClick);
-}
-
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeEsc);
-  document.removeEventListener("click", mouseClick);
-}
+import { FormValidator } from "./FormValidator.js";
+import { openPopup, closePopup, formSubmitMesto, init } from "./utils.js";
+import {
+  profileForm,
+  mestoForm,
+  popup,
+  popupMesto,
+  popupSelectors,
+  editButton,
+  closeButtonPhoto,
+  closeButtonMesto,
+  addButton,
+  closeButton,
+  nameInput,
+  job,
+  jobInput,
+  popupPhoto,
+  name,
+} from "./constants.js";
 
 closeButton.addEventListener("click", () => closePopup(popup));
-
-function openPopupMesto() {
-  formMesto.reset();
-  openPopup(popupMesto);
-  setInitialState(popupMesto, popupSelectors);
-}
 addButton.addEventListener("click", () => openPopupMesto(popupMesto));
 
-function checkMesto() {
-  if (elementList.firstElementChild) {
-    noCardsPlaceholder.classList.add("place__placeholder_hidden");
-  } else {
-    noCardsPlaceholder.classList.remove("place__placeholder_hidden");
-  }
-}
-
-function deleteElement(e) {
-  const element = e.target.closest(".card");
-  element.remove(); //реализация удаления
-  checkMesto();
-}
-
-function setOpenPhoto(img) {
-  popupCaption.textContent = img.alt;
-  popupPicture.src = img.src;
-}
-
-// Модальное окно картинки
-function openPhoto(e) {
-  setOpenPhoto(e.target);
-  openPopup(popupPhoto);
-}
-
-function likeMesto(e) {
-  e.target.classList.toggle("card__like_active"); //реализация лайков
-}
-
-function addCardListeners(element) {
-  element
-    .querySelector(".card__delete")
-    .addEventListener("click", deleteElement);
-  element.querySelector(".card__like").addEventListener("click", likeMesto);
-  element.querySelector(".card__image").addEventListener("click", openPhoto); //реализация попап картинки
-}
-function addCard(card) {
-  const cardElement = createCard(card);
-  addCardListeners(cardElement);
-  elementList.prepend(cardElement);
-}
+const profileValidation = new FormValidator(popupSelectors, profileForm);
+const mestoValidation = new FormValidator(popupSelectors, mestoForm);
+const elementList = document.querySelector(".place__list");
 
 closeButtonMesto.addEventListener("click", () => closePopup(popupMesto));
 
-function formSubmitMesto(e) {
-  e.preventDefault();
-  const newCard = {
-    name: nameMesto.value,
-    link: srcMesto.value,
-  };
-  addCard(newCard);
-  closePopup(popupMesto);
-  checkMesto(); // при удалении всех карточек и добавление первой новой, необходимо спрятать элемент
-}
-formMesto.addEventListener("submit", formSubmitMesto);
+mestoForm.addEventListener("submit", formSubmitMesto);
 
 closeButtonPhoto.addEventListener("click", () => closePopup(popupPhoto));
+
+function openPopupMesto() {
+  mestoForm.reset();
+  openPopup(popupMesto);
+  mestoValidation.enableValidation();
+}
 
 function openPopupProfile() {
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
   openPopup(popup);
-  setInitialState(popup, popupSelectors);
+  profileValidation.enableValidation();
 }
 editButton.addEventListener("click", openPopupProfile);
 
@@ -138,11 +51,6 @@ function formSubmitHandler(e) {
   job.textContent = jobInput.value;
   closePopup(popup);
 }
-formElement.addEventListener("submit", formSubmitHandler);
+profileForm.addEventListener("submit", formSubmitHandler);
 
-function init() {
-  initialCards.reverse().forEach(addCard);
-  // Проверяем наличие карточек на странице (пустой ли массив)
-  checkMesto();
-}
 init();
