@@ -1,5 +1,5 @@
 import { FormValidator } from "./FormValidator.js";
-import { openPopup, closePopup, formSubmitMesto, init } from "./utils.js";
+import { openPopup, closePopup, init, addCard, checkMesto } from "./utils.js";
 import {
   profileForm,
   mestoForm,
@@ -16,6 +16,8 @@ import {
   jobInput,
   popupPhoto,
   name,
+  nameMesto,
+  srcMesto,
 } from "./constants.js";
 
 closeButton.addEventListener("click", () => closePopup(popup));
@@ -23,7 +25,8 @@ addButton.addEventListener("click", () => openPopupMesto(popupMesto));
 
 const profileValidation = new FormValidator(popupSelectors, profileForm);
 const mestoValidation = new FormValidator(popupSelectors, mestoForm);
-const elementList = document.querySelector(".place__list");
+profileValidation.enableValidation();
+mestoValidation.enableValidation();
 
 closeButtonMesto.addEventListener("click", () => closePopup(popupMesto));
 
@@ -34,16 +37,27 @@ closeButtonPhoto.addEventListener("click", () => closePopup(popupPhoto));
 function openPopupMesto() {
   mestoForm.reset();
   openPopup(popupMesto);
-  mestoValidation.enableValidation();
+  mestoValidation.resetForm();
 }
 
 function openPopupProfile() {
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
   openPopup(popup);
-  profileValidation.enableValidation();
+  profileValidation.resetForm();
 }
 editButton.addEventListener("click", openPopupProfile);
+
+function formSubmitMesto(e) {
+  e.preventDefault();
+  const newCard = {
+    name: nameMesto.value,
+    link: srcMesto.value,
+  };
+  addCard(newCard, ".element-template", ".card");
+  closePopup(popupMesto);
+  checkMesto(); // при удалении всех карточек и добавление первой новой, необходимо спрятать элемент
+}
 
 function formSubmitHandler(e) {
   e.preventDefault();

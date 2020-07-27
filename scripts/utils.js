@@ -1,9 +1,6 @@
 import {
   noCardsPlaceholder,
   elementList,
-  popupMesto,
-  nameMesto,
-  srcMesto,
   popupPhoto,
   popupCaption,
   popupPicture,
@@ -44,21 +41,14 @@ export function closePopup(popup) {
   document.removeEventListener("keydown", closeEsc);
   document.removeEventListener("click", mouseClick);
 }
-export function formSubmitMesto(e) {
-  e.preventDefault();
-  const newCard = {
-    name: nameMesto.value,
-    link: srcMesto.value,
-  };
-  addCard(newCard, ".element-template", ".card");
-  closePopup(popupMesto);
-  checkMesto(); // при удалении всех карточек и добавление первой новой, необходимо спрятать элемент
-}
+
 export function setOpenPhoto(img) {
   openPopup(popupPhoto);
   popupCaption.textContent = img.name;
   popupPicture.src = img.link;
 }
+
+export function resetForm() {}
 
 export function addCard(item, elementTemplate, cardSelector) {
   const card = new Card(

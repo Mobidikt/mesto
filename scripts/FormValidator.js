@@ -46,13 +46,19 @@ export class FormValidator {
     }
   }
   _setEventListeners() {
-    this._actualizeButtonState();
     this._inputList.forEach((input) => {
       input.addEventListener("input", () => {
         this._checkInputValidity(input);
         this._actualizeButtonState();
       });
     });
+  }
+
+  resetForm() {
+    this._inputList.forEach((input) => {
+      this._hideInputError(input);
+    });
+    this._actualizeButtonState();
   }
 
   enableValidation() {
