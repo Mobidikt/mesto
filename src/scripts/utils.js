@@ -48,8 +48,6 @@ export function setOpenPhoto(img) {
   popupPicture.src = img.link;
 }
 
-export function resetForm() {}
-
 export function addCard(item, elementTemplate, cardSelector) {
   const card = new Card(
     item,

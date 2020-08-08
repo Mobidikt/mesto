@@ -1,5 +1,12 @@
 export class Card {
-  constructor(card, elementTemplate, cardSelector, setOpenPhoto, checkMesto) {
+  constructor(
+    card,
+    elementTemplate,
+    cardSelector,
+    setOpenPhoto,
+    checkMesto,
+    handleCardClick
+  ) {
     this._link = card.link;
     this._name = card.name;
     this._template = elementTemplate;

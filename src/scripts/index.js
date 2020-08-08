@@ -1,3 +1,4 @@
+// import "../pages/index.css";
 import { FormValidator } from "./FormValidator.js";
 import { openPopup, closePopup, init, addCard, checkMesto } from "./utils.js";
 import {
@@ -19,20 +20,24 @@ import {
   nameMesto,
   srcMesto,
 } from "./constants.js";
+// import { Popup } from "./Popup.js";
+import { UserInfo } from "./UserInfo.js";
 
-closeButton.addEventListener("click", () => closePopup(popup));
+// closeButton.addEventListener("click", () => closePopup(popup));
 addButton.addEventListener("click", () => openPopupMesto(popupMesto));
 
 const profileValidation = new FormValidator(popupSelectors, profileForm);
 const mestoValidation = new FormValidator(popupSelectors, mestoForm);
 profileValidation.enableValidation();
 mestoValidation.enableValidation();
-
-closeButtonMesto.addEventListener("click", () => closePopup(popupMesto));
-
+// const popupTest = new Popup(popupSelectors);
+// const profilePopupForm = new PopupWithForm(popupSelectors, submitForm);
+// const mestoPopupForm = new PopupWithForm();
+// closeButtonMesto.addEventListener("click", () => closePopup(popupMesto));
+const user = new UserInfo(name, job);
 mestoForm.addEventListener("submit", formSubmitMesto);
 
-closeButtonPhoto.addEventListener("click", () => closePopup(popupPhoto));
+// closeButtonPhoto.addEventListener("click", () => closePopup(popupPhoto));
 
 function openPopupMesto() {
   mestoForm.reset();
@@ -41,8 +46,8 @@ function openPopupMesto() {
 }
 
 function openPopupProfile() {
-  nameInput.value = name.textContent;
-  jobInput.value = job.textContent;
+  nameInput.value = user.getUserInfo().name;
+  jobInput.value = user.getUserInfo().job;
   openPopup(popup);
   profileValidation.resetForm();
 }
@@ -61,8 +66,9 @@ function formSubmitMesto(e) {
 
 function formSubmitHandler(e) {
   e.preventDefault();
-  name.textContent = nameInput.value;
-  job.textContent = jobInput.value;
+  const name = nameInput.value;
+  const job = jobInput.value;
+  user.setUserInfo(name, job);
   closePopup(popup);
 }
 profileForm.addEventListener("submit", formSubmitHandler);
