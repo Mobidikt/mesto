@@ -19,9 +19,7 @@ export class PopupWithForm extends Popup {
     this._form.addEventListener("submit", this._submit);
   }
   close() {
-    this._popup.classList.remove("popup_opened");
-    document.removeEventListener("keydown", this._handleEscClose);
-    document.removeEventListener("click", this._overlayClose);
+    super.close();
     this._form.reset();
   }
 }
