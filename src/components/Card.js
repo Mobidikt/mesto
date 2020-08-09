@@ -3,17 +3,16 @@ export class Card {
     card,
     elementTemplate,
     cardSelector,
-    setOpenPhoto,
-    checkMesto,
-    handleCardClick
+    handleCardClick,
+    checkAmountOfCards
   ) {
     this._link = card.link;
     this._name = card.name;
     this._template = elementTemplate;
     this._cardSelector = cardSelector;
     this._isLiked = false;
-    this._open = setOpenPhoto;
-    this._check = checkMesto;
+    this._open = handleCardClick;
+    this._check = checkAmountOfCards;
   }
 
   _getTemplate() {

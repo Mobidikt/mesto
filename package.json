@@ -1,11 +1,12 @@
 {
   "name": "yandex_praktikum",
   "version": "1.0.0",
-  "description": "В проекте реализуются:",
+  "description": "mesto",
   "main": "index.js",
   "scripts": {
     "build": "rd /s /q dist && webpack",
-    "dev": "webpack-dev-server --watch --open"
+    "dev": "webpack-dev-server --watch --open",
+    "webpack": "webpack"
   },
   "repository": {
     "type": "git",
@@ -27,13 +28,13 @@
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "postcss-loader": "^3.0.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "mini-css-extract-plugin": "^0.9.0"
+    "core-js": "^3.6.5"
   }
 }
