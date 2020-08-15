@@ -29,7 +29,7 @@ export class Card {
 
   _handleLike() {
     this._isLiked = !this._isLiked;
-    this._likeButton.classList.toggle("card__like_active"); //реализация лайков
+    this._likeButton.classList.toggle("card__btn-like_active"); //реализация лайков
   }
   _deleteCard() {
     this._card.remove(); //реализация удаления
@@ -42,8 +42,9 @@ export class Card {
   }
   createCard() {
     this._card = this._getTemplate();
-    this._likeButton = this._card.querySelector(".card__like");
-    this._deleteButton = this._card.querySelector(".card__delete");
+    this._likeButton = this._card.querySelector(".card__btn-like");
+    this._likeNumber = this._card.querySelector(".card__number-likes");
+    this._deleteButton = this._card.querySelector(".card__btn-delete");
     this._image = this._card.querySelector(".card__image");
     this._setEventListeners();
     this._card.querySelector(".card__title").textContent = this._name;

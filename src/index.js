@@ -1,4 +1,4 @@
-import "./pages/index.css";
+// import "./pages/index.css";
 import { FormValidator } from "./components/FormValidator.js";
 import { checkAmountOfCards } from "./components/utils.js";
 import {

@@ -1,0 +1,8 @@
+.popup__container_avatar {
+  height: 272px;
+}
+@media screen and (max-width: 555px) {
+  .popup__container_avatar {
+    height: 210px; /*с такими размерами кажется хорошо выглядит*/
+  }
+}

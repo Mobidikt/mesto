@@ -1,0 +1,8 @@
+.popup__container_verification {
+  height: 181px;
+}
+@media screen and (max-width: 555px) {
+  .popup__container_verification {
+    height: 150px; /*с такими размерами кажется хорошо выглядит*/
+  }
+}

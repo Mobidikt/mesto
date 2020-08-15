@@ -1,0 +1,8 @@
+.popup__title_verification {
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 555px) {
+  .popup__title_verification {
+    margin-bottom: 27px;
+  }
+}

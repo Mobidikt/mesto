@@ -1,4 +1,4 @@
-.card__delete {
+.card__btn-delete {
   padding: 0;
   position: absolute;
   top: 18px;
@@ -15,9 +15,9 @@
   background-color: transparent;
   border: none;
 }
-.card__delete:hover {
+.card__btn-delete:hover {
   opacity: 0.6;
 }
-.card__delete:focus {
+.card__btn-delete:focus {
   outline: none;
 }

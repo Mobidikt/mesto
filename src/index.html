@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Кирилл Мецкер" />
     <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="root">
     <div class="page">
@@ -43,6 +44,7 @@
       <footer class="footer">
         <p class="footer__text">&copy; 2020 Mesto Russia</p>
       </footer>
+      <!-- Popup редактирования профиля -->
       <div class="popup popup_type_profile">
         <div class="popup__container">
           <h3 class="popup__title">Редактировать профиль</h3>
@@ -80,6 +82,7 @@
           <button type="button" class="popup__close"></button>
         </div>
       </div>
+      <!-- Popup открытия фото -->
       <div class="popup popup_type_photo">
         <div class="popup__container_photo">
           <img
@@ -92,6 +95,7 @@
           <button type="button" class="popup__close"></button>
         </div>
       </div>
+      <!-- Popup добавления карточки -->
       <div class="popup popup_type_add-card">
         <div class="popup__container">
           <h3 class="popup__title">Новое место</h3>
@@ -127,17 +131,56 @@
           <button type="button" class="popup__close"></button>
         </div>
       </div>
+      <!-- Popup подтверждения действия -->
+      <div class="popup popup_type_verification">
+        <div class="popup__container popup__container_verification">
+          <h3 class="popup__title popup__title_verification">Вы уверены?</h3>
+          <form class="popup__form popup__form_mesto" novalidate>
+            <button type="submit" class="popup__button">
+              Да
+            </button>
+          </form>
+          <button type="button" class="popup__close"></button>
+        </div>
+      </div>
+      <!-- Popup обновить аватар -->
+      <div class="popup popup_type_avatar">
+        <div class="popup__container popup__container_avatar">
+          <h3 class="popup__title">Обновить аватар</h3>
+          <form class="popup__form" novalidate>
+            <label class="popup__field">
+              <input
+                name="src"
+                type="url"
+                placeholder="Ссылка на новый аватар"
+                class="popup__input popup__input_src"
+                id="src"
+                required
+              />
+              <span class="popup__error" id="src-error"></span>
+            </label>
+            <button type="submit" class="popup__button">
+              Сохранить
+            </button>
+          </form>
+          <button type="button" class="popup__close"></button>
+        </div>
+      </div>
     </div>
 
     <template class="element-template">
       <li class="card">
         <img class="card__image" src="#" alt="" />
-        <button type="button" class="card__delete"></button>
+        <button type="button" class="card__btn-delete"></button>
         <div class="card__text">
           <p class="card__title"></p>
-          <button type="button" class="card__like"></button>
+          <div class="card__like">
+            <button type="button" class="card__btn-like"></button>
+            <p class="card__number-likes"></p>
+          </div>
         </div>
       </li>
     </template>
+    <script type="module" src="./index.js"></script>
   </body>
 </html>

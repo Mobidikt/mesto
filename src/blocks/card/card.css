@@ -2,8 +2,11 @@
 @import url(./__text/card__text.css);
 @import url(./__title/card__title.css);
 @import url(./__like/card__like.css);
-@import url(./__delete/card__delete.css);
-@import url(./__like/_active/card__like_active.css);
+@import url(./__btn-delete/card__btn-delete.css);
+@import url(./__btn-like/card__btn-like.css);
+@import url(./__number-likes/card__number-likes.css);
+@import url(./__btn-like/_active/card__btn-like_active.css);
+
 .card {
   position: relative;
   background-color: #ffffff;
