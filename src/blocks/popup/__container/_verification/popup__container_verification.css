@@ -1,8 +1,11 @@
 .popup__container_verification {
   height: 181px;
+  padding: 0 0 0 36px;
+  box-sizing: border-box;
 }
 @media screen and (max-width: 555px) {
   .popup__container_verification {
-    height: 150px; /*с такими размерами кажется хорошо выглядит*/
+    height: 150px;
+    padding-left: 20px; /*с такими размерами кажется хорошо выглядит*/
   }
 }

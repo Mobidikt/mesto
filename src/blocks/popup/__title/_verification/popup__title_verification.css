@@ -1,8 +1,8 @@
 .popup__title_verification {
-  margin-bottom: 20px;
+  margin: 34px 0 20px 0;
 }
 @media screen and (max-width: 555px) {
   .popup__title_verification {
-    margin-bottom: 27px;
+    margin: 30px 0 27px 0;
   }
 }
