@@ -26,14 +26,16 @@ export class Card {
   _openPhoto() {
     this._open({ link: this._link, name: this._name });
   }
-
+  _likeToggleActive() {
+    this._likeButton.classList.toggle("card__btn-like_active");
+  }
   _handleLike() {
     if (!this._likeButton.classList.contains("card__btn-like_active")) {
       this._api
         .createLike(this._id)
         .then((item) => {
-          this._likeNumber.textContent = item.likes.length;
-          this._likeButton.classList.toggle("card__btn-like_active");
+          this._countLikes.textContent = item.likes.length;
+          this._likeToggleActive();
         })
         .catch((err) => {
           console.log(err);
@@ -42,8 +44,8 @@ export class Card {
       this._api
         .deleteLike(this._id)
         .then((item) => {
-          this._likeNumber.textContent = item.likes.length;
-          this._likeButton.classList.toggle("card__btn-like_active");
+          this._countLikes.textContent = item.likes.length;
+          this._likeToggleActive();
         })
         .catch((err) => {
           console.log(err);
@@ -84,7 +86,6 @@ export class Card {
   createCard() {
     this._card = this._getTemplate();
     this._likeButton = this._card.querySelector(".card__btn-like");
-    this._likeNumber = this._card.querySelector(".card__number-likes");
     this._deleteButton = this._card.querySelector(".card__btn-delete");
     this._image = this._card.querySelector(".card__image");
     this._countLikes = this._card.querySelector(".card__number-likes");

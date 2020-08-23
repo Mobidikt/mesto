@@ -15,16 +15,31 @@ export class PopupWithForm extends Popup {
     });
     return info;
   }
-  renderLoading(isLoading, text) {
+  _renderLoading(isLoading, text) {
     if (isLoading) {
       this._button.textContent = `${text}...`;
     } else {
       this._button.textContent = text;
     }
   }
+  _generateHandleSubmit() {
+    return (e) => {
+      e.preventDefault();
+      this._renderLoading(true, "Сохранить");
+      this._submit(this._getInputValues())
+        .then(() => {
+          this.close();
+          e.target.reset();
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => this._renderLoading(false, "Сохранить"));
+    };
+  }
   setEventListeners() {
     super.setEventListeners();
-    this._form.addEventListener("submit", this._submit);
+    this._form.addEventListener("submit", this._generateHandleSubmit());
   }
   close() {
     super.close();

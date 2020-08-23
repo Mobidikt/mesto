@@ -9,6 +9,7 @@ export class PopupWithImage extends Popup {
     const imgPopup = {};
     imgPopup.text = img.name;
     imgPopup.src = img.link;
+    imgPopup.alt = img.name;
     return imgPopup;
   }
 }
